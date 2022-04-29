@@ -1,22 +1,54 @@
-﻿class WordsGame
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
+using WordsGame;
+
+class Task1
 {
     public static void Main(string[] args)
     {
-        LanguageKey key = ConsoleMenu();
-        string[] language = SetInterfaceLanguage(key);
+        int index = SelectLanguageMenu();
+        ExecuteMenuElement(index);
+        Console.WriteLine(Language.InitialWord);
+        string? initialWord = Console.ReadLine();
 
-        Console.WriteLine(language[0]);
-        
+        if (initialWord?.Length is < 8 or > 30)
+        {
+            Console.WriteLine(Language.InitialWordLength);
+            return;
+        }
+
+        string pattern = @$"{Language.LettersRegex}";
+        if (!Regex.IsMatch(initialWord, pattern))
+        {
+            Console.WriteLine(Language.OnlyLetters);
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Норм");
+            return;
+        }
+
     }
 
-    public static LanguageKey ConsoleMenu()
+    public static void PrintMenuElements(string[] menuElements, int index)
     {
-        int enumLength = Enum.GetNames(typeof(LanguageKey)).Length;
+        Console.Clear();
+        Console.WriteLine(Language.SelectLanguage);
+        for (int i = 0; i < menuElements.Length; i++)
+        {
+            Console.WriteLine("{0} {1}", menuElements[i], i == index ? "<<--" : "");
+        }
+    }
+
+    public static int SelectLanguageMenu()
+    {
+        string[] menuElements = { "English", "Russian", "Exit"};
         int index = 0;
         Console.CursorVisible = false;
         while (true)
         {
-            PrintMenuElements(enumLength, index);
+            PrintMenuElements(menuElements, index);
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.UpArrow:
@@ -27,48 +59,26 @@
                     break;
                 case ConsoleKey.Enter:
                     Console.CursorVisible = true;
-                    return (LanguageKey)Enum.GetValues(typeof(LanguageKey)).GetValue(index);
+                    return index;
             }
-            index = (index + enumLength) % enumLength;
+            index = (index + menuElements.Length) % menuElements.Length;
         }
     }
 
-    public static void PrintMenuElements(int enumLength, int index)
+    public static void ExecuteMenuElement(int index)
     {
-        Console.Clear();
-        Console.WriteLine("Choose interface language:");
-        for (int i = 0; i < enumLength; i++)
+        switch (index)
         {
-            Console.WriteLine("{0} {1}", Enum.GetNames(typeof(LanguageKey))[i], i == index ? "<<--" : "");
+            case 0:
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+                break;
+            case 1:
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+                break;
+            case 2:
+                Environment.Exit(0);
+                break;
         }
-    }
-
-    public enum LanguageKey
-    {
-        Russian,
-        English
-    }
-
-    public static string[] SetInterfaceLanguage(LanguageKey key)
-    {
-        string[] russian =
-        {
-            "Введите начально слово (длина от 8 до 30 букв):",
-            "Нет"
-        };
-
-        string[] english =
-        {
-            "Yes",
-            "No"
-        };
-
-        Dictionary<LanguageKey, string[]> languages = new Dictionary<LanguageKey, string[]>
-        {
-            { LanguageKey.Russian, russian },
-            { LanguageKey.English, english }
-        };
-        return languages[key];
     }
 
 
