@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using WordsGame;
 
@@ -6,29 +7,100 @@ class Task1
 {
     public static void Main(string[] args)
     {
-        int index = SelectLanguageMenu();
+        int index = SelectionLanguageMenu();
         ExecuteMenuElement(index);
+        Console.Clear();
         Console.WriteLine(Language.InitialWord);
-        string? initialWord = Console.ReadLine();
+        string initialWord = Console.ReadLine();
 
-        if (initialWord?.Length is < 8 or > 30)
+        if ((initialWord?.Length is < 8 or > 30) || initialWord == string.Empty)
         {
             Console.WriteLine(Language.InitialWordLength);
             return;
         }
 
-        string pattern = @$"{Language.LettersRegex}";
-        if (!Regex.IsMatch(initialWord, pattern))
+        if (!Regex.IsMatch(initialWord, Language.LettersRegex))
         {
             Console.WriteLine(Language.OnlyLetters);
             return;
         }
-        else
+
+        int number = 0;
+        while (true)
         {
-            Console.WriteLine("Норм");
-            return;
+            if (number % 2 == 0)
+            {
+                Console.WriteLine('1' + Language.InputWord);
+            }
+            else
+            {
+                Console.WriteLine('2' + Language.InputWord);
+            }
+
+            string? inputedWord = Console.ReadLine();
+
+            if (inputedWord == string.Empty)
+            {
+                Console.WriteLine(Language.Lose);
+                return;
+            }
+
+            if (!Regex.IsMatch(inputedWord, Language.LettersRegex))
+            {
+                Console.WriteLine(Language.OnlyLetters);
+                return;
+            }
+
+            bool result = CheckWord(initialWord, inputedWord);
+            if (!result)
+            {
+                Console.WriteLine(Language.Lose);
+                return;
+            }
+            number++;
+        }
+    }
+
+    public static bool CheckWord(string initialWord, string inputedWord)
+    {
+        Dictionary<char, int> initialLetters = new Dictionary<char, int>();
+        Dictionary<char, int> inputedLetters = new Dictionary<char, int>();
+
+        foreach (char c in initialWord)
+        {
+            if (!initialLetters.ContainsKey(c))
+            {
+                initialLetters.Add(c, 0);
+            }
+            else
+            {
+                initialLetters[c]++;
+            }
         }
 
+        foreach (char c in inputedWord)
+        {
+            if (!inputedLetters.ContainsKey(c))
+            {
+                inputedLetters.Add(c, 0);
+            }    
+            else
+            {
+                inputedLetters[c]++;
+            }
+        }
+
+        foreach (var c1 in initialLetters)
+        {
+            foreach (var c2 in inputedLetters)
+            {
+                if ((c1.Key == c2.Key && c1.Value < c2.Value) || !initialLetters.ContainsKey(c2.Key))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static void PrintMenuElements(string[] menuElements, int index)
@@ -41,7 +113,7 @@ class Task1
         }
     }
 
-    public static int SelectLanguageMenu()
+    public static int SelectionLanguageMenu()
     {
         string[] menuElements = { "English", "Russian", "Exit"};
         int index = 0;
@@ -80,6 +152,4 @@ class Task1
                 break;
         }
     }
-
-
 }

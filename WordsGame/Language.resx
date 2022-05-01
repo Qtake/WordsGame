@@ -123,8 +123,14 @@
   <data name="InitialWordLength" xml:space="preserve">
     <value>Initial word length should be more than 30 letters and less than 8 letters</value>
   </data>
+  <data name="InputWord" xml:space="preserve">
+    <value> player inputing word:</value>
+  </data>
   <data name="LettersRegex" xml:space="preserve">
-    <value>^a-zA-Z</value>
+    <value>^[a-zA-Z]*$</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>You lose</value>
   </data>
   <data name="OnlyLetters" xml:space="preserve">
     <value>Initial word should contains only letters</value>

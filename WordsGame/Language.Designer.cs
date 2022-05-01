@@ -79,11 +79,29 @@ namespace WordsGame {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ^a-zA-Z.
+        ///   Ищет локализованную строку, похожую на  player inputing word:.
+        /// </summary>
+        public static string InputWord {
+            get {
+                return ResourceManager.GetString("InputWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ^[a-zA-Z]*$.
         /// </summary>
         public static string LettersRegex {
             get {
                 return ResourceManager.GetString("LettersRegex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на You lose.
+        /// </summary>
+        public static string Lose {
+            get {
+                return ResourceManager.GetString("Lose", resourceCulture);
             }
         }
         

@@ -123,8 +123,14 @@
   <data name="InitialWordLength" xml:space="preserve">
     <value>Длина начального слова должна быть больше 30 букв и меньше 8 букв</value>
   </data>
+  <data name="InputWord" xml:space="preserve">
+    <value> игрок вводит слово:</value>
+  </data>
   <data name="LettersRegex" xml:space="preserve">
-    <value>а-яА-Я</value>
+    <value>^[а-яА-Я]*$</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>Вы проиграли</value>
   </data>
   <data name="OnlyLetters" xml:space="preserve">
     <value>Начальное слово должно содержать только буквы</value>
