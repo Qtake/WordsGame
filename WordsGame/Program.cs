@@ -1,31 +1,49 @@
 ﻿using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
-using WordsGame;
+using WordsGame.Languages;
 
-class Task1
+class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
-        int index = SelectionLanguageMenu();
-        ExecuteMenuElement(index);
+        DisplayLanguageMenu();
         Console.Clear();
         Console.WriteLine(Language.InitialWord);
-        string initialWord = Console.ReadLine();
+        string? primaryWord = InputPrimaryWord();
 
-        if ((initialWord?.Length is < 8 or > 30) || initialWord == string.Empty)
+        if (primaryWord == null)
+        {
+            return;
+        }
+
+        StartGameplay(primaryWord);
+
+    }
+
+    public static string? InputPrimaryWord()
+    {
+        string primarylWord = Console.ReadLine() ?? "";
+
+        if ((primarylWord?.Length is < 8 or > 30) || primarylWord == string.Empty)
         {
             Console.WriteLine(Language.InitialWordLength);
-            return;
+            return null;
         }
 
-        if (!Regex.IsMatch(initialWord, Language.LettersRegex))
+        if (!Regex.IsMatch(primarylWord, Language.LettersRegex))
         {
             Console.WriteLine(Language.OnlyLetters);
-            return;
+            return null;
         }
+        return primarylWord;
+    }
 
+    public static void StartGameplay(string primaryWord)
+    {
+        List<string> usedWords = new List<string>();
         int number = 0;
+        string[] uw;
+
         while (true)
         {
             if (number % 2 == 0)
@@ -37,64 +55,73 @@ class Task1
                 Console.WriteLine('2' + Language.InputWord);
             }
 
-            string? inputedWord = Console.ReadLine();
+            string? composedWord = Console.ReadLine();
 
-            if (inputedWord == string.Empty)
+            if (composedWord == string.Empty)
             {
                 Console.WriteLine(Language.Lose);
                 return;
             }
 
-            if (!Regex.IsMatch(inputedWord, Language.LettersRegex))
+            if (!Regex.IsMatch(composedWord, Language.LettersRegex))
             {
                 Console.WriteLine(Language.OnlyLetters);
                 return;
             }
 
-            bool result = CheckWord(initialWord, inputedWord);
+            bool result = CheckWord(primaryWord, composedWord);
             if (!result)
             {
                 Console.WriteLine(Language.Lose);
                 return;
             }
+
+            if (usedWords.Contains(composedWord))
+            {
+                Console.WriteLine("Такое слово уже было введено");
+                Console.WriteLine(Language.Lose);
+                return;
+            }
+
+            usedWords.Add(composedWord);
             number++;
         }
     }
 
-    public static bool CheckWord(string initialWord, string inputedWord)
+    public static bool CheckWord(string primaryWord, string composedWord)
     {
-        Dictionary<char, int> initialLetters = new Dictionary<char, int>();
-        Dictionary<char, int> inputedLetters = new Dictionary<char, int>();
+        Dictionary<char, int> primaryWordLetters = new Dictionary<char, int>();
+        Dictionary<char, int> composedWordLetters = new Dictionary<char, int>();
 
-        foreach (char c in initialWord)
+        foreach (char c in primaryWord)
         {
-            if (!initialLetters.ContainsKey(c))
+            if (!primaryWordLetters.ContainsKey(c))
             {
-                initialLetters.Add(c, 0);
+                primaryWordLetters.Add(c, 0);
             }
             else
             {
-                initialLetters[c]++;
+                primaryWordLetters[c]++;
             }
         }
 
-        foreach (char c in inputedWord)
+        foreach (char c in composedWord)
         {
-            if (!inputedLetters.ContainsKey(c))
+            if (!composedWordLetters.ContainsKey(c))
             {
-                inputedLetters.Add(c, 0);
+                composedWordLetters.Add(c, 0);
             }    
             else
             {
-                inputedLetters[c]++;
+                composedWordLetters[c]++;
             }
         }
 
-        foreach (var c1 in initialLetters)
+        foreach (var c1 in primaryWordLetters)
         {
-            foreach (var c2 in inputedLetters)
+            foreach (var c2 in composedWordLetters)
             {
-                if ((c1.Key == c2.Key && c1.Value < c2.Value) || !initialLetters.ContainsKey(c2.Key))
+                if ((c1.Key == c2.Key && c1.Value < c2.Value) || !primaryWordLetters.ContainsKey(c2.Key))
                 {
                     return false;
                 }
@@ -113,10 +140,17 @@ class Task1
         }
     }
 
-    public static int SelectionLanguageMenu()
+    public static void DisplayLanguageMenu()
     {
-        string[] menuElements = { "English", "Russian", "Exit"};
+        Dictionary<string, string> languages = new Dictionary<string, string>()
+        {
+            { "English", "en-US" },
+            { "Русский", "ru-RU" }
+        };
+        string[] menuElements = languages.Keys.ToArray();
         int index = 0;
+        string key = menuElements[index];
+
         Console.CursorVisible = false;
         while (true)
         {
@@ -131,25 +165,11 @@ class Task1
                     break;
                 case ConsoleKey.Enter:
                     Console.CursorVisible = true;
-                    return index;
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languages[key]);
+                    return;
             }
+            key = menuElements[index];
             index = (index + menuElements.Length) % menuElements.Length;
-        }
-    }
-
-    public static void ExecuteMenuElement(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-                break;
-            case 1:
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-                break;
-            case 2:
-                Environment.Exit(0);
-                break;
         }
     }
 }
