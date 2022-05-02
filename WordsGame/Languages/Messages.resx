@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InitialWord" xml:space="preserve">
-    <value>Enter initial word:</value>
-  </data>
-  <data name="InitialWordLength" xml:space="preserve">
-    <value>Initial word length should be more than 30 letters and less than 8 letters</value>
+  <data name="FirstPlayerTurn" xml:space="preserve">
+    <value>First player's turn</value>
   </data>
   <data name="InputWord" xml:space="preserve">
-    <value> player inputing word:</value>
+    <value>Enter a word</value>
   </data>
   <data name="LettersRegex" xml:space="preserve">
     <value>^[a-zA-Z]*$</value>
   </data>
   <data name="Lose" xml:space="preserve">
-    <value>You lose</value>
+    <value>The player lost</value>
   </data>
-  <data name="OnlyLetters" xml:space="preserve">
-    <value>Initial word should contains only letters</value>
+  <data name="SecondPlayerTurn" xml:space="preserve">
+    <value>Second player's turn</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Choose interface language:</value>
+    <value>Choose language</value>
+  </data>
+  <data name="WordCharactersError" xml:space="preserve">
+    <value>The word must contain only English letters</value>
+  </data>
+  <data name="WordIsUsed" xml:space="preserve">
+    <value>This word has already been used</value>
+  </data>
+  <data name="WordLengthError" xml:space="preserve">
+    <value>The main word should not be longer than 30 characters and shorter than 8</value>
   </data>
 </root>

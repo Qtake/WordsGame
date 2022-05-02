@@ -8,20 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Languages\Language.Designer.cs">
+    <Compile Update="Languages\Messages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Language.resx</DependentUpon>
+      <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Languages\Language.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Languages\Language.ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+    <EmbeddedResource Update="Languages\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

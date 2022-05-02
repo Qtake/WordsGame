@@ -8,78 +8,74 @@ class Program
     {
         DisplayLanguageMenu();
         Console.Clear();
-        Console.WriteLine(Language.InitialWord);
-        string? primaryWord = InputPrimaryWord();
+        Console.WriteLine(Messages.InputWord);
+        string? primaryWord = Console.ReadLine() ?? "";
 
-        if (primaryWord == null)
+        if (!CheckPrimaryWord(primaryWord))
         {
             return;
         }
 
         StartGameplay(primaryWord);
-
     }
 
-    public static string? InputPrimaryWord()
+    public static bool CheckPrimaryWord(string primaryWord)
     {
-        string primarylWord = Console.ReadLine() ?? "";
-
-        if ((primarylWord?.Length is < 8 or > 30) || primarylWord == string.Empty)
+        if ((primaryWord?.Length is < 8 or > 30) || primaryWord == string.Empty)
         {
-            Console.WriteLine(Language.InitialWordLength);
-            return null;
+            Console.WriteLine(Messages.WordLengthError);
+            return false;
         }
+        return CheckCharacters(primaryWord);
+    }
 
-        if (!Regex.IsMatch(primarylWord, Language.LettersRegex))
+    public static bool CheckComposedWord(string composedWord)
+    {
+        if (composedWord == string.Empty)
         {
-            Console.WriteLine(Language.OnlyLetters);
-            return null;
+            Console.WriteLine("Проиграл");
+            return false;
         }
-        return primarylWord;
+        return CheckCharacters(composedWord);
+    }
+
+    public static bool CheckCharacters(string word)
+    {
+        if (!Regex.IsMatch(word, Messages.LettersRegex))
+        {
+            Console.WriteLine(Messages.WordCharactersError);
+            return false;
+        }
+        return true;
     }
 
     public static void StartGameplay(string primaryWord)
     {
         List<string> usedWords = new List<string>();
         int number = 0;
-        string[] uw;
 
         while (true)
         {
             if (number % 2 == 0)
             {
-                Console.WriteLine('1' + Language.InputWord);
+                Console.WriteLine(Messages.FirstPlayerTurn);
             }
             else
             {
-                Console.WriteLine('2' + Language.InputWord);
+                Console.WriteLine(Messages.SecondPlayerTurn);
             }
 
-            string? composedWord = Console.ReadLine();
-
-            if (composedWord == string.Empty)
+            string? composedWord = Console.ReadLine() ?? "";
+            
+            if (!CheckWord(primaryWord, composedWord))
             {
-                Console.WriteLine(Language.Lose);
-                return;
-            }
-
-            if (!Regex.IsMatch(composedWord, Language.LettersRegex))
-            {
-                Console.WriteLine(Language.OnlyLetters);
-                return;
-            }
-
-            bool result = CheckWord(primaryWord, composedWord);
-            if (!result)
-            {
-                Console.WriteLine(Language.Lose);
+                Console.WriteLine(Messages.Lose);
                 return;
             }
 
             if (usedWords.Contains(composedWord))
             {
-                Console.WriteLine("Такое слово уже было введено");
-                Console.WriteLine(Language.Lose);
+                Console.WriteLine(Messages.WordIsUsed);
                 return;
             }
 
@@ -133,7 +129,7 @@ class Program
     public static void PrintMenuElements(string[] menuElements, int index)
     {
         Console.Clear();
-        Console.WriteLine(Language.SelectLanguage);
+        Console.WriteLine(Messages.SelectLanguage);
         for (int i = 0; i < menuElements.Length; i++)
         {
             Console.WriteLine("{0} {1}", menuElements[i], i == index ? "<<--" : "");
@@ -148,8 +144,8 @@ class Program
             { "Русский", "ru-RU" }
         };
         string[] menuElements = languages.Keys.ToArray();
+        string key;
         int index = 0;
-        string key = menuElements[index];
 
         Console.CursorVisible = false;
         while (true)
@@ -165,10 +161,10 @@ class Program
                     break;
                 case ConsoleKey.Enter:
                     Console.CursorVisible = true;
+                    key = menuElements[index];
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(languages[key]);
                     return;
             }
-            key = menuElements[index];
             index = (index + menuElements.Length) % menuElements.Length;
         }
     }

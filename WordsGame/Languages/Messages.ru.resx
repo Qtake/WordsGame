@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InitialWord" xml:space="preserve">
-    <value>Введите начальное слово:</value>
-  </data>
-  <data name="InitialWordLength" xml:space="preserve">
-    <value>Длина начального слова должна быть больше 30 букв и меньше 8 букв</value>
+  <data name="FirstPlayerTurn" xml:space="preserve">
+    <value>Ход первого игрока</value>
   </data>
   <data name="InputWord" xml:space="preserve">
-    <value> игрок вводит слово:</value>
+    <value>Введите слово</value>
   </data>
   <data name="LettersRegex" xml:space="preserve">
     <value>^[а-яА-Я]*$</value>
   </data>
   <data name="Lose" xml:space="preserve">
-    <value>Вы проиграли</value>
+    <value>Игрок проиграл</value>
   </data>
-  <data name="OnlyLetters" xml:space="preserve">
-    <value>Начальное слово должно содержать только буквы</value>
+  <data name="SecondPlayerTurn" xml:space="preserve">
+    <value>Ход второго игрока</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Выберите язык интерфейса:</value>
+    <value>Выберите язык</value>
+  </data>
+  <data name="WordCharactersError" xml:space="preserve">
+    <value>Слово должно содержать только русские буквы</value>
+  </data>
+  <data name="WordIsUsed" xml:space="preserve">
+    <value>Такое слово уже было использовано</value>
+  </data>
+  <data name="WordLengthError" xml:space="preserve">
+    <value>Основное слово не должно быть длинее 30 символов и короче 8</value>
   </data>
 </root>

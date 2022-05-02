@@ -22,24 +22,24 @@ namespace WordsGame.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Language {
+    internal class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Language() {
+        internal Messages() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WordsGame.Languages.Language", typeof(Language).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WordsGame.Languages.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace WordsGame.Languages {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,18 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter initial word:.
+        ///   Looks up a localized string similar to First player&apos;s turn.
         /// </summary>
-        public static string InitialWord {
+        internal static string FirstPlayerTurn {
             get {
-                return ResourceManager.GetString("InitialWord", resourceCulture);
+                return ResourceManager.GetString("FirstPlayerTurn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initial word length should be more than 30 letters and less than 8 letters.
+        ///   Looks up a localized string similar to Enter a word.
         /// </summary>
-        public static string InitialWordLength {
-            get {
-                return ResourceManager.GetString("InitialWordLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  player inputing word:.
-        /// </summary>
-        public static string InputWord {
+        internal static string InputWord {
             get {
                 return ResourceManager.GetString("InputWord", resourceCulture);
             }
@@ -90,36 +81,63 @@ namespace WordsGame.Languages {
         /// <summary>
         ///   Looks up a localized string similar to ^[a-zA-Z]*$.
         /// </summary>
-        public static string LettersRegex {
+        internal static string LettersRegex {
             get {
                 return ResourceManager.GetString("LettersRegex", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You lose.
+        ///   Looks up a localized string similar to The player lost.
         /// </summary>
-        public static string Lose {
+        internal static string Lose {
             get {
                 return ResourceManager.GetString("Lose", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initial word should contains only letters.
+        ///   Looks up a localized string similar to Second player&apos;s turn.
         /// </summary>
-        public static string OnlyLetters {
+        internal static string SecondPlayerTurn {
             get {
-                return ResourceManager.GetString("OnlyLetters", resourceCulture);
+                return ResourceManager.GetString("SecondPlayerTurn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose interface language:.
+        ///   Looks up a localized string similar to Choose language.
         /// </summary>
-        public static string SelectLanguage {
+        internal static string SelectLanguage {
             get {
                 return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The word must contain only English letters.
+        /// </summary>
+        internal static string WordCharactersError {
+            get {
+                return ResourceManager.GetString("WordCharactersError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This word has already been used.
+        /// </summary>
+        internal static string WordIsUsed {
+            get {
+                return ResourceManager.GetString("WordIsUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The main word should not be longer than 30 characters and shorter than 8.
+        /// </summary>
+        internal static string WordLengthError {
+            get {
+                return ResourceManager.GetString("WordLengthError", resourceCulture);
             }
         }
     }
