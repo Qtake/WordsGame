@@ -120,6 +120,9 @@
   <data name="FirstPlayerTurn" xml:space="preserve">
     <value>First player's turn:</value>
   </data>
+  <data name="IncorectCompose" xml:space="preserve">
+    <value>The word composed incrorectly.</value>
+  </data>
   <data name="InputWord" xml:space="preserve">
     <value>Enter a word:</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Choose language:</value>
+  </data>
+  <data name="TimerElapsed" xml:space="preserve">
+    <value>Time is over.</value>
   </data>
   <data name="WordCharactersError" xml:space="preserve">
     <value>The word must contain only English letters.</value>

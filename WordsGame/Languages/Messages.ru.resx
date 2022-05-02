@@ -120,6 +120,9 @@
   <data name="FirstPlayerTurn" xml:space="preserve">
     <value>Ход первого игрока:</value>
   </data>
+  <data name="IncorectCompose" xml:space="preserve">
+    <value>Слово составленно неправильно.</value>
+  </data>
   <data name="InputWord" xml:space="preserve">
     <value>Введите слово:</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Выберите язык:</value>
+  </data>
+  <data name="TimerElapsed" xml:space="preserve">
+    <value>Время вышло.</value>
   </data>
   <data name="WordCharactersError" xml:space="preserve">
     <value>Слово должно содержать только русские буквы.</value>

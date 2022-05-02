@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
 using WordsGame.Languages;
 
@@ -7,7 +6,7 @@ class Program
 {
     public static void Main()
     {
-        DisplayLanguageMenu();
+        CreateMenu();
         Console.Clear();
         Console.WriteLine(Messages.InputWord);
         string? primaryWord = (Console.ReadLine() ?? "").ToLower();
@@ -57,29 +56,34 @@ class Program
 
         while (true)
         {
-            Console.WriteLine(number % 2 == 0 ? Messages.FirstPlayerTurn : Messages.SecondPlayerTurn);
+            Console.WriteLine(number % 2 == 0 ? "\n" + Messages.FirstPlayerTurn : "\n" + Messages.SecondPlayerTurn);
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 60000;
+            timer.Elapsed += TimerElapsed;
+            timer.Start();
             string? composedWord = (Console.ReadLine() ?? "").ToLower();
 
             if (!CheckComposedWord(composedWord))
             {
-                return;
+                break;
             }
             
             if (!MatchLetters(primaryWord, composedWord))
             {
-                Console.WriteLine(Messages.Lose);
-                return;
+                Console.WriteLine(Messages.IncorectCompose + ' ' + Messages.Lose);
+                break;
             }
 
             if (usedWords.Contains(composedWord))
             {
                 Console.WriteLine(Messages.WordIsUsed);
-                return;
+                break;
             }
 
             usedWords.Add(composedWord);
             number++;
         }
+        Main();
     }
 
     public static bool MatchLetters(string primaryWord, string composedWord)
@@ -105,6 +109,12 @@ class Program
         return true;
     }
 
+    public static void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        Console.WriteLine(Messages.TimerElapsed + ' ' + Messages.Lose);
+        Environment.Exit(0);
+    }
+
     public static void PrintMenuElements(string[] menuElements, int index)
     {
         Console.Clear();
@@ -115,7 +125,7 @@ class Program
         }
     }
 
-    public static void DisplayLanguageMenu()
+    public static void CreateMenu()
     {
         Dictionary<string, string> languages = new Dictionary<string, string>()
         {
@@ -125,8 +135,8 @@ class Program
         string[] menuElements = languages.Keys.ToArray();
         string key;
         int index = 0;
-
         Console.CursorVisible = false;
+
         while (true)
         {
             PrintMenuElements(menuElements, index);

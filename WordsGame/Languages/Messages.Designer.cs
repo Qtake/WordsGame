@@ -70,6 +70,15 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The word composed incrorectly..
+        /// </summary>
+        internal static string IncorectCompose {
+            get {
+                return ResourceManager.GetString("IncorectCompose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a word:.
         /// </summary>
         internal static string InputWord {
@@ -111,6 +120,15 @@ namespace WordsGame.Languages {
         internal static string SelectLanguage {
             get {
                 return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time is over..
+        /// </summary>
+        internal static string TimerElapsed {
+            get {
+                return ResourceManager.GetString("TimerElapsed", resourceCulture);
             }
         }
         
