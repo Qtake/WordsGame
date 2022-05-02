@@ -61,7 +61,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First player&apos;s turn.
+        ///   Looks up a localized string similar to First player&apos;s turn:.
         /// </summary>
         internal static string FirstPlayerTurn {
             get {
@@ -70,7 +70,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a word.
+        ///   Looks up a localized string similar to Enter a word:.
         /// </summary>
         internal static string InputWord {
             get {
@@ -88,7 +88,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The player lost.
+        ///   Looks up a localized string similar to The player lost..
         /// </summary>
         internal static string Lose {
             get {
@@ -97,7 +97,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Second player&apos;s turn.
+        ///   Looks up a localized string similar to Second player&apos;s turn:.
         /// </summary>
         internal static string SecondPlayerTurn {
             get {
@@ -106,7 +106,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose language.
+        ///   Looks up a localized string similar to Choose language:.
         /// </summary>
         internal static string SelectLanguage {
             get {
@@ -115,7 +115,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The word must contain only English letters.
+        ///   Looks up a localized string similar to The word must contain only English letters..
         /// </summary>
         internal static string WordCharactersError {
             get {
@@ -124,7 +124,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This word has already been used.
+        ///   Looks up a localized string similar to This word has already been used..
         /// </summary>
         internal static string WordIsUsed {
             get {
@@ -133,7 +133,7 @@ namespace WordsGame.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The main word should not be longer than 30 characters and shorter than 8.
+        ///   Looks up a localized string similar to The main word should not be longer than 30 characters and shorter than 8..
         /// </summary>
         internal static string WordLengthError {
             get {

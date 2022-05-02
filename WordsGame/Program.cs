@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using WordsGame.Languages;
 
@@ -9,7 +10,7 @@ class Program
         DisplayLanguageMenu();
         Console.Clear();
         Console.WriteLine(Messages.InputWord);
-        string? primaryWord = Console.ReadLine() ?? "";
+        string? primaryWord = (Console.ReadLine() ?? "").ToLower();
 
         if (!CheckPrimaryWord(primaryWord))
         {
@@ -33,7 +34,7 @@ class Program
     {
         if (composedWord == string.Empty)
         {
-            Console.WriteLine("Проиграл");
+            Console.WriteLine(Messages.Lose);
             return false;
         }
         return CheckCharacters(composedWord);
@@ -56,18 +57,15 @@ class Program
 
         while (true)
         {
-            if (number % 2 == 0)
-            {
-                Console.WriteLine(Messages.FirstPlayerTurn);
-            }
-            else
-            {
-                Console.WriteLine(Messages.SecondPlayerTurn);
-            }
+            Console.WriteLine(number % 2 == 0 ? Messages.FirstPlayerTurn : Messages.SecondPlayerTurn);
+            string? composedWord = (Console.ReadLine() ?? "").ToLower();
 
-            string? composedWord = Console.ReadLine() ?? "";
+            if (!CheckComposedWord(composedWord))
+            {
+                return;
+            }
             
-            if (!CheckWord(primaryWord, composedWord))
+            if (!MatchLetters(primaryWord, composedWord))
             {
                 Console.WriteLine(Messages.Lose);
                 return;
@@ -84,40 +82,21 @@ class Program
         }
     }
 
-    public static bool CheckWord(string primaryWord, string composedWord)
+    public static bool MatchLetters(string primaryWord, string composedWord)
     {
-        Dictionary<char, int> primaryWordLetters = new Dictionary<char, int>();
-        Dictionary<char, int> composedWordLetters = new Dictionary<char, int>();
+        var primaryWordLetters = primaryWord
+            .GroupBy(c => c)
+            .Select(g => new { Letter = g.Key, Count = g.Count() });
 
-        foreach (char c in primaryWord)
-        {
-            if (!primaryWordLetters.ContainsKey(c))
-            {
-                primaryWordLetters.Add(c, 0);
-            }
-            else
-            {
-                primaryWordLetters[c]++;
-            }
-        }
-
-        foreach (char c in composedWord)
-        {
-            if (!composedWordLetters.ContainsKey(c))
-            {
-                composedWordLetters.Add(c, 0);
-            }    
-            else
-            {
-                composedWordLetters[c]++;
-            }
-        }
+        var composedWordLetters = composedWord
+            .GroupBy(c => c)
+            .Select(g => new { Letter = g.Key, Count = g.Count() });
 
         foreach (var c1 in primaryWordLetters)
         {
             foreach (var c2 in composedWordLetters)
             {
-                if ((c1.Key == c2.Key && c1.Value < c2.Value) || !primaryWordLetters.ContainsKey(c2.Key))
+                if ((c1.Letter == c2.Letter && c1.Count < c2.Count) || !primaryWord.Contains(c2.Letter))
                 {
                     return false;
                 }

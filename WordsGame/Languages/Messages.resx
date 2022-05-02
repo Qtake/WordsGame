@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FirstPlayerTurn" xml:space="preserve">
-    <value>First player's turn</value>
+    <value>First player's turn:</value>
   </data>
   <data name="InputWord" xml:space="preserve">
-    <value>Enter a word</value>
+    <value>Enter a word:</value>
   </data>
   <data name="LettersRegex" xml:space="preserve">
     <value>^[a-zA-Z]*$</value>
   </data>
   <data name="Lose" xml:space="preserve">
-    <value>The player lost</value>
+    <value>The player lost.</value>
   </data>
   <data name="SecondPlayerTurn" xml:space="preserve">
-    <value>Second player's turn</value>
+    <value>Second player's turn:</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Choose language</value>
+    <value>Choose language:</value>
   </data>
   <data name="WordCharactersError" xml:space="preserve">
-    <value>The word must contain only English letters</value>
+    <value>The word must contain only English letters.</value>
   </data>
   <data name="WordIsUsed" xml:space="preserve">
-    <value>This word has already been used</value>
+    <value>This word has already been used.</value>
   </data>
   <data name="WordLengthError" xml:space="preserve">
-    <value>The main word should not be longer than 30 characters and shorter than 8</value>
+    <value>The main word should not be longer than 30 characters and shorter than 8.</value>
   </data>
 </root>
