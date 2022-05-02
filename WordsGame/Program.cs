@@ -26,6 +26,7 @@ class Program
             Console.WriteLine(Messages.WordLengthError);
             return false;
         }
+
         return CheckCharacters(primaryWord);
     }
 
@@ -36,6 +37,7 @@ class Program
             Console.WriteLine(Messages.Lose);
             return false;
         }
+
         return CheckCharacters(composedWord);
     }
 
@@ -46,6 +48,7 @@ class Program
             Console.WriteLine(Messages.WordCharactersError);
             return false;
         }
+
         return true;
     }
 
@@ -106,6 +109,7 @@ class Program
                 }
             }
         }
+
         return true;
     }
 
@@ -119,6 +123,7 @@ class Program
     {
         Console.Clear();
         Console.WriteLine(Messages.SelectLanguage);
+
         for (int i = 0; i < menuElements.Length; i++)
         {
             Console.WriteLine("{0} {1}", menuElements[i], i == index ? "<<--" : "");
