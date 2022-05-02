@@ -68,25 +68,24 @@ class Program
 
             if (!CheckComposedWord(composedWord))
             {
-                break;
+                return;
             }
             
             if (!MatchLetters(primaryWord, composedWord))
             {
                 Console.WriteLine(Messages.IncorectCompose + ' ' + Messages.Lose);
-                break;
+                return;
             }
 
             if (usedWords.Contains(composedWord))
             {
                 Console.WriteLine(Messages.WordIsUsed);
-                break;
+                return;
             }
 
             usedWords.Add(composedWord);
             number++;
         }
-        Main();
     }
 
     public static bool MatchLetters(string primaryWord, string composedWord)
@@ -137,6 +136,7 @@ class Program
             { "English", "en-US" },
             { "Русский", "ru-RU" }
         };
+
         string[] menuElements = languages.Keys.ToArray();
         string key;
         int index = 0;
